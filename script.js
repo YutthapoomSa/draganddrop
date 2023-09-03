@@ -28,6 +28,7 @@ let data = [
 
 // ─────────────────────────────────────────────────────────────────────────────
 const ul = document.querySelector("ul");
+// console.log("document.querySelector ", JSON.stringify(ul, null, 2));
 
 const createListElement = () => {
   ul.innerHTML = "";
@@ -44,6 +45,7 @@ const createListElement = () => {
 
   data.forEach((person, i) => {
     const li = document.createElement("li");
+
     li.setAttribute("list-pos", i);
 
     li.innerHTML = `
@@ -69,6 +71,7 @@ function listenToEvents() {
   let lists = ul.querySelectorAll("li"),
     current_pos,
     drop_pos;
+  // console.log("ul.querySelectorAll ", JSON.stringify(lists, null, 2));
 
   for (let li of lists) {
     li.draggable = true;
@@ -104,12 +107,20 @@ function listenToEvents() {
       data.splice(drop_pos, 0, data.splice(current_pos, 1)[0]);
 
       createListElement();
-      //   console.log(
-      //     "data",
-      //     JSON.stringify(data.splice(current_pos, 1)[0], null, 2)
-      //   );
-      //   console.log("current_pos", JSON.stringify(current_pos, null, 2)),
-      //     console.log("drop_pos", JSON.stringify(drop_pos, null, 2));
+
+      // console.log─────────────────────────────────────────────────────
+      console.log(
+        "data",
+        JSON.stringify(data.splice(current_pos, 1)[0], null, 2)
+      );
+      console.log("current_pos", JSON.stringify(current_pos, null, 2));
+      console.log("drop_pos", JSON.stringify(drop_pos, null, 2));
+      console.log("onDragStart", JSON.stringify(li.ondragstart, null, 2));
+      console.log("onDragEnter", JSON.stringify(li.ondragenter, null, 2));
+      console.log("onDragLeave", JSON.stringify(li.ondragleave, null, 2));
+      console.log("onDragEnd", JSON.stringify(li.ondragend, null, 2));
+      console.log("onDragOver", JSON.stringify(li.ondragover, null, 2));
+      console.log("onDrop", JSON.stringify(li.ondrop, null, 2));
     };
   }
 }
